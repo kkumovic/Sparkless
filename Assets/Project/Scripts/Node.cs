@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Vector2Int Pos2D { get; set; }
+    public void Init()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    }
+    public void SetColorForPoint(int colorIdForSpawnedNode)
     {
-        
+
+    }
+    public void SetEdge(Vector2Int offset, Node node)
+    {
+
     }
 }
