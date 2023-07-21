@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelList : MonoBehaviour
+namespace Sparkless.Common
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "Levels", menuName = "SO/AllLevels")]
+    public class LevelList : ScriptableObject
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public List<LevelData> Levels;
     }
 }
