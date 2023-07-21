@@ -25,8 +25,12 @@ namespace Sparkless.Core
             _winText.SetActive(false);
             _titleText.gameObject.SetActive(true);
             _titleText.text = GameManager.Instance.StageName + " - " + GameManager.Instance.CurrentLevel.ToString();
-            
+
+            CurrentLevelData = GameManager.Instance.GetLevel();
+
+
             SpawnBoard();
+            SpawnNodes();
         }
         #endregion
 
