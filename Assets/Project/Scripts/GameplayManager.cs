@@ -18,9 +18,14 @@ namespace Sparkless.Core
         [SerializeField] private TMP_Text _titleText;
         [SerializeField] private GameObject _winText;
         [SerializeField] private SpriteRenderer _clickHighlight;
+
         private void Awake()
         {
             instance = this;
+
+        }
+        private void Start()
+        {
             hasGameFinished = false;
             _winText.SetActive(false);
             _titleText.gameObject.SetActive(true);
