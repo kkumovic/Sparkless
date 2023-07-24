@@ -388,12 +388,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &395489180 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 700480984306045444, guid: d0cb893d4012c9c429d47710b93efd7f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6657061644315877414}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &450701081
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,6 +906,12 @@ SpriteRenderer:
 --- !u!1 &986193895 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2754214036978393748, guid: d0cb893d4012c9c429d47710b93efd7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6657061644315877414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1056290704 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2111150232656409922, guid: d0cb893d4012c9c429d47710b93efd7f,
     type: 3}
   m_PrefabInstance: {fileID: 6657061644315877414}
   m_PrefabAsset: {fileID: 0}
@@ -1718,7 +1718,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _point
       value: 
-      objectReference: {fileID: 395489180}
+      objectReference: {fileID: 0}
     - target: {fileID: 477266589651901973, guid: d0cb893d4012c9c429d47710b93efd7f,
         type: 3}
       propertyPath: _topEdge
@@ -1733,7 +1733,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _highLight
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1056290704}
     - target: {fileID: 477266589651901973, guid: d0cb893d4012c9c429d47710b93efd7f,
         type: 3}
       propertyPath: _rightEdge
