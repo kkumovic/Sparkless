@@ -144,11 +144,77 @@ namespace Sparkless.Core
         #endregion
 
         #region Update_methods
+        private Node startNode;
+        public void Update()
+        {
+            if (hasGameFinished) return;
+            if(Input.GetMouseButtonDown(0))
+            {
+                startNode = null;
+                return;
+            }
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
+                if(startNode == null)
+                {
+                    if(hit && hit.collider.gameObject.TryGetComponent(out Node tNode)
+                        && tNode.IsClickable)
+                    {
+                        startNode = tNode;
+                        _clickHighlight.gameObject.SetActive(true);
+                        _clickHighlight.gameObject.transform.position = (Vector3)mousePos2D;
+                        _clickHighlight.color = GetHighLightColor(tNode.colorId);
+
+                    }
+                    return;
+                }
+                _clickHighlight.gameObject.transform.position = (Vector3)mousePos2D;
+                if(hit && hit.collider.gameObject.TryGetComponent(out Node tempNode) && startNode != tempNode)
+                {
+                    if(startNode.colorId != tempNode.colorId && tempNode.IsEndNode)
+                    {
+                        return;
+                    }
+                    startNode.UpdateInput(tempNode);
+                    CheckWin();
+                    startNode = null;
+                }
+                return;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                startNode = null;
+                _clickHighlight.gameObject.SetActive(false);
+            }
+        }
         #endregion
 
         #region Win_condition
+        private void CheckWin()
+        {
+            bool IsWinning = false;
+            foreach(var item in _nodes)
+            {
+                item.SolveHighLight();
+            }
+            foreach(var item in _nodes)
+            {
+                IsWinning &= item.IsWin;
+                if(!IsWinning)
+                {
+                    return;
+                }
+            }
+            GameManager.Instance.UnlockLevel();
+            _winText.gameObject.SetActive(true);
+            _clickHighlight.gameObject.SetActive(false);
 
+            hasGameFinished = true;
+        }
         #endregion
 
         #region Button_functions
