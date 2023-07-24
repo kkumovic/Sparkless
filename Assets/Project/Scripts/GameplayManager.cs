@@ -40,25 +40,27 @@ namespace Sparkless.Core
         #endregion
 
         #region Board_spawn
-        [SerializeField] private SpriteRenderer _boardPrefab, _bgCellPrefab;
+        [SerializeField] private SpriteRenderer _boardPrefab;
+        [SerializeField] private GameObject _bgCellPrefab;
         private void SpawnBoard()
         {
             int curentLevelSize = GameManager.Instance.CurrentStage + 4;
             var board = Instantiate(_boardPrefab,
-                new Vector3(curentLevelSize/2f,curentLevelSize/2f,0f),
-                Quaternion.identity);
+                new Vector3(curentLevelSize / 2f, 0f, curentLevelSize / 2f),
+                //new Vector3(curentLevelSize/2f,curentLevelSize/2f,0f),
+                Quaternion.AngleAxis(90, Vector3.left));
 
             board.size = new Vector2 (curentLevelSize+0.08f,curentLevelSize+0.08f);
             for(int i = 0; i< curentLevelSize; i++)
             {
                 for(int j = 0; j< curentLevelSize; j++)
                 {
-                    Instantiate(_bgCellPrefab, new Vector3(i+0.5f,j+0.5f,0f), Quaternion.identity);
+                    Instantiate(_bgCellPrefab, new Vector3(i+0.5f,0.1f, j + 0.5f), Quaternion.identity);
                 }
             }
             Camera.main.orthographicSize = curentLevelSize
                 +2f;
-            Camera.main.transform.position = new Vector3 (curentLevelSize/2,curentLevelSize/2,-10f);
+            Camera.main.transform.position = new Vector3 (curentLevelSize/2, curentLevelSize / 2, curentLevelSize / 2);
             _clickHighlight.size = new Vector2(curentLevelSize/4,curentLevelSize/4);
             _clickHighlight.transform.position = new Vector3(0,0,0);
             _clickHighlight.gameObject.SetActive(false);
@@ -82,7 +84,8 @@ namespace Sparkless.Core
             {
                 for(int j = 0; j < currentLevelSize; j++)
                 {
-                    spawnPos = new Vector3(i + 0.5f, j + 0.5f, 0f);
+                    //spawnPos = new Vector3(i + 0.5f, j + 0.5f, 0f);
+                    spawnPos = new Vector3(i + 0.5f, 0f, j + 0.5f);
                     spawnedNode = Instantiate(_nodePrefab,spawnPos,Quaternion.identity);
                     spawnedNode.Init();
 
