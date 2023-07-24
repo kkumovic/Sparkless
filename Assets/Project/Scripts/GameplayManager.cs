@@ -34,9 +34,6 @@ namespace Sparkless.Core
         }
         #endregion
 
-
-        #endregion
-
         #region Board_spawn
         [SerializeField] private SpriteRenderer _boardPrefab, _bgCellPrefab;
         private void SpawnBoard()
@@ -135,6 +132,7 @@ namespace Sparkless.Core
             return result;
 
         }
+        #endregion
         #endregion
 
         #region Update_methods
