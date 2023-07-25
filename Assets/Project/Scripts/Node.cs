@@ -15,6 +15,29 @@ public class Node : MonoBehaviour
     private Dictionary<Node, GameObject> ConnectedEdges;
 
     [HideInInspector] public int colorId;
+    public bool IsWin
+    {
+        get
+        {
+            if(_point.activeSelf)
+            {
+                return ConnectedNodes.Count == 1;
+            }
+            return ConnectedNodes.Count == 2;
+        }
+    }
+    public bool IsClickable
+    {
+        get
+        {
+            if (_point.activeSelf)
+            {
+                return true;
+            }
+            return ConnectedNodes.Count > 0;
+        }
+    }
+    public bool IsEndNode => _point.activeSelf;
     public Vector2Int Pos2D { get; set; }
     public void Init()
     {
@@ -23,6 +46,7 @@ public class Node : MonoBehaviour
         _bottomEdge.SetActive(false);
         _leftEdge.SetActive(false);
         _rightEdge.SetActive(false);
+        _highLight.SetActive(false);
         ConnectedEdges = new Dictionary<Node, GameObject>();
         ConnectedNodes = new List<Node>();
 
@@ -31,7 +55,7 @@ public class Node : MonoBehaviour
     {
         this.colorId = colorIdForSpawnedNode;
         _point.SetActive(true);
-        _point.GetComponent<SpriteRenderer>().color = GameplayManager.instance.NodeColors[colorId];
+        _point.GetComponent<MeshRenderer>().material.color = GameplayManager.instance.NodeColors[colorId];
     }
     public void SetEdge(Vector2Int offset, Node node)
     {
@@ -56,6 +80,30 @@ public class Node : MonoBehaviour
             return;
         }
     }
-    public List<Node> ConnectedNodes;
+    
+    [HideInInspector]public List<Node> ConnectedNodes;
+    public void UpdateInput(Node connectedNode)
+    {
+        if (!ConnectedEdges.ContainsKey(connectedNode))
+        {
+            return;
+        }
+        AddEdge(connectedNode);
+
+    }
+    private void AddEdge(Node connectedNode)
+    {
+        connectedNode.colorId = colorId;
+        connectedNode.ConnectedNodes.Add(this);
+        ConnectedNodes.Add(connectedNode);
+        GameObject connectedEdge = ConnectedEdges[connectedNode];
+        connectedEdge.SetActive(true);
+        connectedEdge.GetComponent<SpriteRenderer>().color =
+            GameplayManager.instance.NodeColors[colorId];
+    }
+    public void SolveHighLight()
+    {
+
+    }
 
 }
