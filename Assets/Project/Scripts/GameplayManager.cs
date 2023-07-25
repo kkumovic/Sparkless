@@ -59,11 +59,11 @@ namespace Sparkless.Core
                 {
                     if((i+j)%2 == 0 || i + j == 0)
                     {
-                        Instantiate(_bgCellPrefab2, new Vector3(i + 0.5f, 0.1f, j + 0.5f), Quaternion.identity);
+                        Instantiate(_bgCellPrefab2, new Vector3(i + 0.5f, 0f, j + 0.5f), Quaternion.identity);
                     }
                     else
                     {
-                        Instantiate(_bgCellPrefab, new Vector3(i + 0.5f, 0.1f, j + 0.5f), Quaternion.identity);
+                        Instantiate(_bgCellPrefab, new Vector3(i + 0.5f, 0f, j + 0.5f), Quaternion.identity);
                     }
 
                 }
@@ -101,14 +101,14 @@ namespace Sparkless.Core
 
                     int colorIdForSpawnedNode = GetColorId(i,j);
 
-                    if(colorIdForSpawnedNode != -1)
+                    if (colorIdForSpawnedNode != -1)
                     {
                         spawnedNode.SetColorForPoint(colorIdForSpawnedNode);
-                        _nodes.Add(spawnedNode);
-                        _nodeGrid.Add(new Vector2Int(i, j), spawnedNode);
-                        spawnedNode.gameObject.name = i.ToString() + j.ToString();
-                        spawnedNode.Pos3D = new Vector3Int(i, 0, j);
                     }
+                    _nodes.Add(spawnedNode);
+                    _nodeGrid.Add(new Vector2Int(i, j), spawnedNode);
+                    spawnedNode.gameObject.name = i.ToString() + j.ToString();
+                    spawnedNode.Pos3D = new Vector3Int(i, 0, j);
                 }
                 List<Vector2Int> offsetPos = new List<Vector2Int>() { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
 
@@ -145,7 +145,7 @@ namespace Sparkless.Core
 
         public Color GetHighLightColor(int colorID)
         {
-            Color result = NodeColors[colorID];
+            Color result = NodeColors[colorID % NodeColors.Count];
             result.a = 0.4f;
             return result;
 
@@ -175,7 +175,7 @@ namespace Sparkless.Core
                     {
                         if (tempNode != null && tempNode.IsClickable)
                         {
-                            Debug.Log(hit.collider.gameObject.name);
+                            Debug.Log("1" + hit.collider.gameObject.name);
                             startNode = tempNode;
                             _clickHighlight.gameObject.SetActive(true);
                             _clickHighlight.gameObject.transform.position = hit.point;
@@ -191,7 +191,7 @@ namespace Sparkless.Core
                         {
                             return;
                         }
-                        Debug.Log(hit.collider.gameObject.name);
+                        Debug.Log("2" +hit.collider.gameObject.name);
                         startNode.UpdateInput(tempNode);
                         CheckWin();
                         startNode = null;
@@ -210,12 +210,14 @@ namespace Sparkless.Core
         #region Win_condition
         private void CheckWin()
         {
+            Debug.Log("CheckWin 1");
             bool IsWinning = false;
             foreach(var item in _nodes)
             {
-                item.SolveHighLight();
+                item.SolveHighlight();
             }
-            foreach(var item in _nodes)
+            Debug.Log("CheckWin 2");
+            foreach (var item in _nodes)
             {
                 IsWinning &= item.IsWin;
                 if(!IsWinning)
@@ -223,11 +225,13 @@ namespace Sparkless.Core
                     return;
                 }
             }
+            Debug.Log("CheckWin 3");
             GameManager.Instance.UnlockLevel();
             _winText.gameObject.SetActive(true);
             _clickHighlight.gameObject.SetActive(false);
 
             hasGameFinished = true;
+            Debug.Log("Winnnnnn");
         }
         #endregion
 
