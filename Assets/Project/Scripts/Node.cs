@@ -334,9 +334,9 @@ namespace Sparkless.Core
         }
 
         private List<Vector2Int> directionCheck = new List<Vector2Int>()
-    {
-        Vector2Int.up,Vector2Int.left,Vector2Int.down,Vector2Int.right
-    };
+        {
+            Vector2Int.up,Vector2Int.left,Vector2Int.down,Vector2Int.right
+        };
 
         public bool IsDegreeThree(List<Node> resultNodes)
         {

@@ -69,8 +69,8 @@ namespace Sparkless.Core
                 }
             }
             Camera.main.orthographicSize = curentLevelSize
-                +0.5f;
-            Camera.main.transform.position = new Vector3 (curentLevelSize/2f, curentLevelSize, 0f);
+                +0.2f;
+            Camera.main.transform.position = new Vector3 (1f, curentLevelSize+1.5f, curentLevelSize/2f);
             _clickHighlight.size = new Vector2(curentLevelSize/4,curentLevelSize/4);
             _clickHighlight.transform.position = new Vector3(0,0,0);
             _clickHighlight.gameObject.SetActive(false);
