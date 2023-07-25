@@ -38,7 +38,7 @@ public class Node : MonoBehaviour
         }
     }
     public bool IsEndNode => _point.activeSelf;
-    public Vector2Int Pos2D { get; set; }
+    public Vector3Int Pos3D { get; set; }
     public void Init()
     {
         _point.SetActive(false);
@@ -98,7 +98,7 @@ public class Node : MonoBehaviour
         ConnectedNodes.Add(connectedNode);
         GameObject connectedEdge = ConnectedEdges[connectedNode];
         connectedEdge.SetActive(true);
-        connectedEdge.GetComponent<SpriteRenderer>().color =
+        connectedEdge.GetComponent<MeshRenderer>().material.color =
             GameplayManager.instance.NodeColors[colorId];
     }
     public void SolveHighLight()

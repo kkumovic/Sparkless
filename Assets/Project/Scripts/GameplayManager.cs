@@ -107,7 +107,7 @@ namespace Sparkless.Core
                         _nodes.Add(spawnedNode);
                         _nodeGrid.Add(new Vector2Int(i, j), spawnedNode);
                         spawnedNode.gameObject.name = i.ToString() + j.ToString();
-                        spawnedNode.Pos2D = new Vector2Int(i, j);
+                        spawnedNode.Pos3D = new Vector3Int(i, 0, j);
                     }
                 }
                 List<Vector2Int> offsetPos = new List<Vector2Int>() { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
@@ -165,37 +165,39 @@ namespace Sparkless.Core
             }
             if (Input.GetMouseButton(0))
             {
-                Vector3 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
-                if(startNode == null)
+                if (Physics.Raycast(ray, out hit))
                 {
-                    if(hit && hit.collider.gameObject.TryGetComponent(out Node tNode)
-                        && tNode.IsClickable)
+                    Node tempNode = hit.collider.gameObject.GetComponent<Node>();
+                    if (startNode == null)
                     {
-                        Debug.Log(hit);
-                        startNode = tNode;
-                        _clickHighlight.gameObject.SetActive(true);
-                        _clickHighlight.gameObject.transform.position = (Vector3)mousePos2D;
-                        _clickHighlight.color = GetHighLightColor(tNode.colorId);
+                        if (tempNode != null && tempNode.IsClickable)
+                        {
+                            Debug.Log(hit.collider.gameObject.name);
+                            startNode = tempNode;
+                            _clickHighlight.gameObject.SetActive(true);
+                            _clickHighlight.gameObject.transform.position = hit.point;
+                            _clickHighlight.color = GetHighLightColor(tempNode.colorId);
+                        }
+                        return;
+                    }
+                    _clickHighlight.gameObject.transform.position = hit.point;
 
+                    if (tempNode != null && startNode != tempNode)
+                    {
+                        if (startNode.colorId != tempNode.colorId && tempNode.IsEndNode)
+                        {
+                            return;
+                        }
+                        Debug.Log(hit.collider.gameObject.name);
+                        startNode.UpdateInput(tempNode);
+                        CheckWin();
+                        startNode = null;
                     }
                     return;
                 }
-                _clickHighlight.gameObject.transform.position = (Vector3)mousePos2D;
-                if(hit && hit.collider.gameObject.TryGetComponent(out Node tempNode) && startNode != tempNode)
-                {
-                    if(startNode.colorId != tempNode.colorId && tempNode.IsEndNode)
-                    {
-                        return;
-                    }
-                    Debug.Log(hit);
-                    startNode.UpdateInput(tempNode);
-                    CheckWin();
-                    startNode = null;
-                }
-                return;
             }
             if (Input.GetMouseButtonUp(0))
             {
