@@ -46,6 +46,7 @@ public class Node : MonoBehaviour
         _bottomEdge.SetActive(false);
         _leftEdge.SetActive(false);
         _rightEdge.SetActive(false);
+        _highLight.SetActive(false);
         ConnectedEdges = new Dictionary<Node, GameObject>();
         ConnectedNodes = new List<Node>();
 
@@ -54,7 +55,7 @@ public class Node : MonoBehaviour
     {
         this.colorId = colorIdForSpawnedNode;
         _point.SetActive(true);
-        _point.GetComponent<SpriteRenderer>().color = GameplayManager.instance.NodeColors[colorId];
+        _point.GetComponent<MeshRenderer>().material.color = GameplayManager.instance.NodeColors[colorId];
     }
     public void SetEdge(Vector2Int offset, Node node)
     {
