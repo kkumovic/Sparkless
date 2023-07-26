@@ -175,7 +175,7 @@ namespace Sparkless.Core
                     {
                         if (tempNode != null && tempNode.IsClickable)
                         {
-                            Debug.Log("1" + hit.collider.gameObject.name);
+                            //Debug.Log("1" + hit.collider.gameObject.name);
                             startNode = tempNode;
                             _clickHighlight.gameObject.SetActive(true);
                             _clickHighlight.gameObject.transform.position = hit.point;
@@ -191,7 +191,7 @@ namespace Sparkless.Core
                         {
                             return;
                         }
-                        Debug.Log("2" +hit.collider.gameObject.name);
+                        //Debug.Log("2" +hit.collider.gameObject.name);
                         startNode.UpdateInput(tempNode);
                         CheckWin();
                         startNode = null;
@@ -219,9 +219,11 @@ namespace Sparkless.Core
             Debug.Log("CheckWin 2");
             foreach (var item in _nodes)
             {
-                IsWinning &= item.IsWin;
+                IsWinning = item.IsWin;
+                print("IDEEEE");
                 if(!IsWinning)
                 {
+                    Debug.Log(gameObject.name);
                     return;
                 }
             }

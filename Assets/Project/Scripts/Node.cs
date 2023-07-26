@@ -17,6 +17,7 @@ namespace Sparkless.Core
         private Dictionary<Node, GameObject> ConnectedEdges;
 
         [HideInInspector] public int colorId;
+        private Animator _animator;
         public bool IsWin
         {
             get
@@ -28,6 +29,7 @@ namespace Sparkless.Core
                 return ConnectedNodes.Count == 2;
             }
         }
+
         public bool IsClickable
         {
             get
@@ -41,6 +43,7 @@ namespace Sparkless.Core
         }
         public bool IsEndNode => _point.activeSelf;
         public Vector3Int Pos3D { get; set; }
+
         public void Init()
         {
             _point.SetActive(false);
@@ -49,6 +52,7 @@ namespace Sparkless.Core
             _leftEdge.SetActive(false);
             _rightEdge.SetActive(false);
             _highLight.SetActive(false);
+            _animator = GetComponentInChildren<Animator>();
             ConnectedEdges = new Dictionary<Node, GameObject>();
             ConnectedNodes = new List<Node>();
 
@@ -325,6 +329,7 @@ namespace Sparkless.Core
                 _highLight.SetActive(true);
                 _highLight.GetComponent<MeshRenderer>().material.color =
                     GameplayManager.instance.GetHighLightColor(colorId);
+                _animator.enabled = true;
             }
             else
             {
