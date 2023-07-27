@@ -8,11 +8,13 @@ namespace Sparkless.Core
     public class Node : MonoBehaviour
     {
         [SerializeField] private GameObject _point;
+        [SerializeField] private GameObject _pole;
         [SerializeField] private GameObject _topEdge;
         [SerializeField] private GameObject _bottomEdge;
         [SerializeField] private GameObject _leftEdge;
         [SerializeField] private GameObject _rightEdge;
         [SerializeField] private GameObject _highLight;
+
 
         private Dictionary<Node, GameObject> ConnectedEdges;
 
@@ -61,7 +63,7 @@ namespace Sparkless.Core
         {
             this.colorId = colorIdForSpawnedNode;
             _point.SetActive(true);
-            _point.GetComponent<MeshRenderer>().material.color
+            _pole.GetComponent<MeshRenderer>().material.color
                 = GameplayManager.instance.NodeColors[colorId % GameplayManager.instance.NodeColors.Count];
         }
         public void SetEdge(Vector2Int offset, Node node)
