@@ -41,19 +41,17 @@ namespace Sparkless.Core
         #endregion
 
         #region Board_spawn
-        [SerializeField] private SpriteRenderer _boardPrefab;
+        [SerializeField] private GameObject _boardPrefab;
         [SerializeField] private GameObject _bgCellPrefab;
         [SerializeField] private GameObject _bgCellPrefab2;
         private void SpawnBoard()
         {
             int curentLevelSize = GameManager.Instance.CurrentStage + 4;
             var board = Instantiate(_boardPrefab,
-                new Vector3(curentLevelSize / 2f, 0f, curentLevelSize / 2f),
-                //new Vector3(curentLevelSize/2f,curentLevelSize/2f,0f),
-                Quaternion.AngleAxis(90, Vector3.left));
-
-            board.size = new Vector2 (curentLevelSize+0.08f,curentLevelSize+0.08f);
-            for(int i = 0; i< curentLevelSize; i++)
+                new Vector3(curentLevelSize / 2f, 0f, curentLevelSize / 2f), Quaternion.identity);
+            //board.size = new Vector2(curentLevelSize + 0.08f, curentLevelSize + 0.08f);
+            //board.transform.localScale = new Vector3(curentLevelSize + 0.08f,board.transform.localScale.z, curentLevelSize + 0.08f);
+            for (int i = 0; i< curentLevelSize; i++)
             {
                 for(int j = 0; j< curentLevelSize; j++)
                 {
@@ -69,7 +67,7 @@ namespace Sparkless.Core
                 }
             }
             Camera.main.orthographicSize = curentLevelSize
-                +0.2f;
+                +0.7f;
             Camera.main.transform.position = new Vector3 (1f, curentLevelSize+1.5f, curentLevelSize/2f);
             _clickHighlight.size = new Vector2(curentLevelSize/4,curentLevelSize/4);
             _clickHighlight.transform.position = new Vector3(0,0,0);
@@ -80,6 +78,7 @@ namespace Sparkless.Core
         #region Node_spawn
         private LevelData CurrentLevelData;
         [SerializeField] private Node _nodePrefab;
+        [SerializeField] private Node _nodePrefab2;
         private List<Node> _nodes;
 
         public Dictionary<Vector2Int, Node> _nodeGrid;
@@ -94,12 +93,21 @@ namespace Sparkless.Core
             {
                 for(int j = 0; j < currentLevelSize; j++)
                 {
-                    //spawnPos = new Vector3(i + 0.5f, j + 0.5f, 0f);
-                    spawnPos = new Vector3(i + 0.5f, 0f, j + 0.5f);
-                    spawnedNode = Instantiate(_nodePrefab,spawnPos,Quaternion.identity);
-                    spawnedNode.Init();
 
-                    int colorIdForSpawnedNode = GetColorId(i,j);
+                    spawnPos = new Vector3(i + 0.5f, 0f, j + 0.5f);
+
+
+                    int colorIdForSpawnedNode = GetColorId(i, j);
+                    if(colorIdForSpawnedNode == -1)
+                    {
+                        spawnedNode = Instantiate(_nodePrefab2, spawnPos, Quaternion.identity);
+                        spawnedNode.Init();
+                    }
+                    else
+                    {
+                        spawnedNode = Instantiate(_nodePrefab, spawnPos, Quaternion.identity);
+                        spawnedNode.Init();
+                    }
 
                     if (colorIdForSpawnedNode != -1)
                     {
