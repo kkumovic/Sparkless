@@ -2809,7 +2809,7 @@ MonoBehaviour:
   CurrentStage: 0
   CurrentLevel: 0
   StageName: 
-  DefaultLevel: {fileID: 11400000, guid: 2782f44531b166246997f46f6c1aa05a, type: 2}
+  DefaultLevel: {fileID: 11400000, guid: 6af0eb6eefca30040a73da14fdc67ce5, type: 2}
   _allLevels: {fileID: 11400000, guid: e383a3f0a4298134b8a541ed610702ac, type: 2}
 --- !u!4 &629903370
 Transform:

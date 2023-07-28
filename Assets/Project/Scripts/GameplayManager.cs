@@ -215,30 +215,30 @@ namespace Sparkless.Core
         #region Win_condition
         private void CheckWin()
         {
-            Debug.Log("CheckWin 1");
+            //Debug.Log("CheckWin 1");
             bool IsWinning = false;
             foreach(var item in _nodes)
             {
                 item.SolveHighlight();
             }
-            Debug.Log("CheckWin 2");
+            //Debug.Log("CheckWin 2");
             foreach (var item in _nodes)
             {
                 IsWinning = item.IsWin;
                 print("IDEEEE");
                 if(!IsWinning)
                 {
-                    Debug.Log(gameObject.name);
+                    //Debug.Log(gameObject.name);
                     return;
                 }
             }
-            Debug.Log("CheckWin 3");
+            //Debug.Log("CheckWin 3");
             GameManager.Instance.UnlockLevel();
             _winText.gameObject.SetActive(true);
             _clickHighlight.gameObject.SetActive(false);
 
             hasGameFinished = true;
-            Debug.Log("Winnnnnn");
+            //Debug.Log("Winnnnnn");
         }
         #endregion
 
