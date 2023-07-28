@@ -24,9 +24,6 @@ namespace Sparkless.Core
         {
             instance = this;
 
-        }
-        private void Start()
-        {
             hasGameFinished = false;
             _winText.SetActive(false);
             _titleText.gameObject.SetActive(true);
