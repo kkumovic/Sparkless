@@ -2,17 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelData : MonoBehaviour
+namespace Sparkless.Common
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "Level", menuName = "SO/Level")]
+    public class LevelData : ScriptableObject
     {
-        
+        public string LevelName;
+        public List<Edge> Edges;
     }
 
-    // Update is called once per frame
-    void Update()
+    [System.Serializable]
+    public struct Edge
     {
-        
+        public List<Vector2Int> Points;
+        public Vector2Int StartPoint
+        {
+            get
+            {
+                if (Points != null && Points.Count > 0)
+                {
+                    return Points[0];
+                }
+                return new Vector2Int(-1, -1);
+            }
+        }
+        public Vector2Int EndPoint
+        {
+            get
+            {
+                if (Points != null && Points.Count > 0)
+                {
+                    return Points[Points.Count - 1];
+                }
+                return new Vector2Int(-1, -1);
+            }
+        }
     }
 }

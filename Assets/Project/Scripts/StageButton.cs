@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class StageButton : MonoBehaviour
+namespace Sparkless.Core
 {
-    // Start is called before the first frame update
-    void Start()
+    public class StageButton : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private string _stageName;
+        [SerializeField] private int _stageNumber;
+        [SerializeField] private Button _button;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        private void Awake()
+        {
+            _button.onClick.AddListener(ClickedButton);
+        }
+
+        private void ClickedButton()
+        {
+            GameManager.Instance.CurrentStage = _stageNumber;
+            GameManager.Instance.StageName = _stageName;
+            MainMenuManager.Instance.ClickedStage(_stageName);
+        }
+
+    } 
 }
