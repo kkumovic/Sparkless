@@ -225,7 +225,7 @@ namespace Sparkless.Core
             foreach (var item in _nodes)
             {
                 IsWinning = item.IsWin;
-                print("IDEEEE");
+                
                 if(!IsWinning)
                 {
                     //Debug.Log(gameObject.name);
@@ -253,7 +253,7 @@ namespace Sparkless.Core
         }
         public void ClickedNextLevel()
         {
-            if (hasGameFinished) return;
+            if (!hasGameFinished) return;
             GameManager.Instance.GoToGameplay();
         }
         #endregion
