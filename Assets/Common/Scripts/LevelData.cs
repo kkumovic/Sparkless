@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sparkless.Common
 {
-    [CreateAssetMenu(fileName = "Level", menuName = "SO/Level")]
+    [CreateAssetMenu(fileName = "Level",menuName = "SO/Level")]
     public class LevelData : ScriptableObject
     {
         public string LevelName;
@@ -17,9 +16,9 @@ namespace Sparkless.Common
         public List<Vector2Int> Points;
         public Vector2Int StartPoint
         {
-            get
+            get 
             {
-                if (Points != null && Points.Count > 0)
+                if(Points!=null && Points.Count > 0) 
                 {
                     return Points[0];
                 }
