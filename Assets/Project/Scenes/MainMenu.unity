@@ -1396,8 +1396,8 @@ MonoBehaviour:
   CurrentStage: 0
   CurrentLevel: 0
   StageName: 
-  DefaultLevel: {fileID: 11400000, guid: 6af0eb6eefca30040a73da14fdc67ce5, type: 2}
-  _allLevels: {fileID: 11400000, guid: e383a3f0a4298134b8a541ed610702ac, type: 2}
+  DefaultLevel: {fileID: 11400000, guid: 752b7fae5bf061e45ab62c401a7a39ef, type: 2}
+  _allLevels: {fileID: 11400000, guid: 0c42c6ab4e819f74a8685ba2109401ed, type: 2}
 --- !u!4 &629903370
 Transform:
   m_ObjectHideFlags: 0
