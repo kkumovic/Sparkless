@@ -46,7 +46,7 @@ namespace Sparkless.Core
         public Color CurrentColor;
 
         [SerializeField]
-        private TMP_Text _levelTitleText;
+        private Text _levelTitleText;
 
         public void ClickedStage(string stageName)
         {
