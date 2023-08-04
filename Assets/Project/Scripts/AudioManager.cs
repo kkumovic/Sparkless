@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class BackgroundMusicManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static BackgroundMusicManager instance;
+
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
     }
 }
