@@ -332,6 +332,7 @@ namespace Sparkless.Core
                 _highLight.SetActive(true);
                 _highLight.GetComponent<MeshRenderer>().material.color =
                     GameplayManager.instance.GetHighLightColor(colorId);
+
                 _animator.enabled = true;
             }
             else

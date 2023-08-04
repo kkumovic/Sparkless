@@ -227,11 +227,15 @@ namespace Sparkless.Core
         }
         public void ClickedRestart()
         {
-            if(hasGameFinished)
+            if (hasGameFinished)
             {
                 GameManager.Instance.CurrentLevel--;
+                GameManager.Instance.GoToGameplay();
             }
-            GameManager.Instance.GoToGameplay();
+            else
+            {
+                GameManager.Instance.GoToGameplay();
+            }
         }
         public void ClickedNextLevel()
         {
