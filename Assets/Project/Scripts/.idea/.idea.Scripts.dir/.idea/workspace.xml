@@ -14,7 +14,6 @@
     <setting file="file://$PROJECT_DIR$/AudioManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LevelButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MainMenuManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MusicButton.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/StageButton.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2T733qsVWqpFRlrZwjbA1PWe6W2" />
@@ -57,7 +56,7 @@
       <workItem from="1690548658837" duration="41000" />
       <workItem from="1690987603770" duration="6000" />
       <workItem from="1691154011752" duration="1590000" />
-      <workItem from="1691156136183" duration="19000" />
+      <workItem from="1691156136141" duration="3812000" />
     </task>
     <servers />
   </component>

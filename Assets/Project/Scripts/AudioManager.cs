@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class BackgroundMusicManager : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-    private static BackgroundMusicManager instance;
+    private static AudioManager instance;
 
     private void Awake()
     {
@@ -16,7 +16,6 @@ public class BackgroundMusicManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
     private void Start()
     {
         AudioSource audioSource = GetComponent<AudioSource>();
