@@ -296,6 +296,7 @@ namespace Sparkless.Core
         {
             if (ConnectedNodes.Count == 0)
             {
+                _animator.enabled = false;
                 _highLight.SetActive(false);
                 return;
             }
@@ -336,6 +337,7 @@ namespace Sparkless.Core
             else
             {
                 _highLight.SetActive(false);
+                _animator.enabled = false;
             }
 
         }
